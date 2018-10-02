@@ -36,12 +36,16 @@ if (timing < 20000):
     timing = 20000
 print ("Timing %d ms" % (timing/1000))
 
+total = 0
+
 for count in range(1,6):
     distance = tof.get_distance()
     if (distance > 0):
         print ("%d mm, %d cm, %d" % (distance, (distance/10), count))
+        total += distance
 
     time.sleep(timing/1000000.00)
 
-tof.stop_ranging()
+print ("%d AVGDISTANCE" % (round(total/count)))
 
+tof.stop_ranging()
